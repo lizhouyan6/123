@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跑马龙效果</title>  
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+        div {
+          background-image:url(wu.jpg);
+          height: 500px;
+          width:428px;
+          color: pink;
+          border-radius: 25%;
+          text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+      <input type="button" value="走起" @click = "fan"> 
+      <input type="button" value="低调" @click = "low">
+      <p v-cloak>{{msg}}</p> 
+      <p v-cloak>{{msg}}</p> 
+      <p v-cloak>{{msg}}</p> 
+      <p v-cloak>{{msg}}</p> 
+      <p v-cloak>{{msg}}</p> 
+      <p v-cloak>{{msg}}</p> 
+      <p v-cloak>{{msg}}</p> 
+      <p v-cloak>{{msg}}</p>
+      <p v-cloak>{{msg}}</p>
+      <p v-cloak>{{msg}}</p>
+      <p v-cloak>{{msg}}</p>
+      <p v-cloak>{{msg}}</p> 
+
+    </div>
+    <script src="vue.js"></script>
+    <script>
+      var tt = new Vue ({
+        el:"#app",
+        data:{
+          msg:'我是凡家军啊哈哈哈,吴亦凡的最爱！',
+          intervalId:null,
+        },
+        methods:{
+          fan() {
+          if(tt.intervalId != null) {
+          return;
+          }
+          //tt也可用this指向，而this处于局部，因此data监听内部所有内容需var _this = this;
+          tt.intervalId = setInterval( function()  {
+          //console.log(_this.msg);
+          var start = tt.msg.substring(0,1);
+          var end = tt.msg.substring(1);
+          tt.msg = end + start;
+          },400)
+        },
+        low:function() {
+          clearInterval(tt.intervalId);
+          tt.intervalId = null;
+        }
+        }
+      })
+    </script>    
+                
+</body>
+</html>
